@@ -14,11 +14,15 @@ def emotion_detector():
     text_to_analyze = request.args.get('textToAnalyze')
     # Pass the text to the sentiment_analyzer function and store the response
     response = emotion_detector(text_to_analyze)
-    # Extract the label and score from the response
-    label = response['dominant_emotion']
-    score = response['score']
+ 
+    anger = response['anger']
+    disgust = response['disgust']
+    fear = response['fear']
+    joy = response['joy']
+    sadness = response['sadness']
+    dominant_emotion = response['dominant_emotion']
     # Return a formatted string with the sentiment label and score
-    return "For the given statement, the system response is
+    return "For the given statement, the system response is 'anger': {}, 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}." .format(anger, disgust, fear, joy, sadness, dominant_emotion)
 
 @app.route("/")
 def render_index_page():
